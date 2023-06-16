@@ -33,6 +33,7 @@
       voice: []
     };
     function account(url) {
+      Lampa.Storage.set('account_email','sechenykh.alexandr@yandex.ru');
       if (url.indexOf('account_email') == -1) {
         var email = Lampa.Storage.get('account_email');
         if (email) url = Lampa.Utils.addUrlComponent(url, 'account_email=' + encodeURIComponent(email));

@@ -3,6 +3,7 @@
 	function myErrHandler() {return true;}
 	window.onerror = myErrHandler;
 	function Iptvskaz_n(object) {
+		Lampa.Storage.set('account_email','sechenykh.alexandr@yandex.ru');
 		var network=new Lampa.Reguest,scroll=new Lampa.Scroll({mask:!0,over:!0,step:250}),items=[],html=$("<div></div>"),body=$('<div class="iptvskaz_n category-full"></div>');cache=Lampa.Storage.cache("fav_skazchns",5e3,[]),body.append('<div style="display: none;" class="noti"></div>');var info=null,last=null,_this1=this,cache=Array.from(cache),cache_name=object.url,searched=!1,cors="";
 		var catalogs = [{
         title: 'РћР±С‰РёРµ РєР°РЅР°Р»С‹',
@@ -55,6 +56,7 @@
 					catalogs.push({title: 'РќРѕС‡РЅС‹Рµ', url: 'http://62.84.100.7/ch.json?gr=noo'});
 		if(cache_name.includes("gr=noo")) Lampa.Noty.show('РР·РІРёРЅРёС‚Рµ, РЅРѕ РєР°Р¶РµС‚СЃСЏ Сѓ РІР°СЃ РЅРµС‚ РїРѕРґРїРёСЃРєРё.');
 	this.create=function(){	
+		Lampa.Storage.set('account_email','sechenykh.alexandr@yandex.ru');
 	 var acc = '';
 	 if (acc = '') acc = 'test';
 	 var utils = {
@@ -74,6 +76,7 @@
             
 			network.silent(url + '&time=1',
                 function (data) {
+					Lampa.Storage.set('account_email','sechenykh.alexandr@yandex.ru');
                     var te = new Date().getTime();
                     utils.timeOffset = (data.serverTime < ts || data.serverTime > te) ? data.serverTime - te : 0;
                     utils.ua += data.scope || '';
@@ -93,6 +96,7 @@
     }
 	var t=this;return this.activity.loader(!0),getUrl(object.url,this.build.bind(this),(function(){var a=new Lampa.Empty;html.append(a.render()),t.start=a.start,t.activity.loader(!1),t.activity.toggle()})),this.render()},this.back=function(){if(searched){var t=Lampa.Arrays.clone(object);delete t.activity,Lampa.Activity.push(t),searched=!1}else Lampa.Activity.backward()};
 		this.append = function (data) {
+			Lampa.Storage.set('account_email','sechenykh.alexandr@yandex.ru');
 			if(cache_name.includes("fav=1")){var ar=Lampa.Storage.get("fav_skazchns"),fav=[];Object.keys(ar).forEach((function(a){if(Lampa.Arrays.getKeys(cache[a]).length&&"notdispl"!=a){data&&data.forEach((function(t){t.tvtitle==cache[a]&&fav.push(t)}))}}))} else if(cache_name.includes("nodisplay=1")){var notdisplay=[];if(Lampa.Arrays.getKeys(cache).length){var _this3=this;data&&data.forEach((function(a){Lampa.Arrays.getValues(cache).filter((function(t){'not'+a.tvtitle==t&&notdisplay.push(a)}))}))}}else{
 				if(Lampa.Arrays.getKeys(cache).length){_this3=this,fav=[];data&&data.forEach((function(a){Lampa.Arrays.getValues(cache).filter((function(t){a.tvtitle==t&&fav.push(a)}))}))}if(Lampa.Arrays.getKeys(cache).length){_this3=this;var notdispl=[];data&&data.forEach((function(a,t,e){Lampa.Arrays.getValues(cache).filter((function(e){'not'+a.tvtitle==e&&delete data[t]}))}))}}cache_name.includes("fav=1")&&fav?data=fav:cache_name.includes("nodisplay=1")&&notdisplay?data=notdisplay:fav&&(data=fav.concat(data),data=data.filter((function(a,t,e){return e.indexOf(a)===t})));
 				
@@ -135,6 +139,7 @@
 	var parseEpg=function(e){if(!$(".player-info__body")[0]){if(cache_name.includes("fav=1"))var a="&fav=1";else a="";if(cache_name.includes("tvpl.json"))var r="http://62.84.100.7/4.php?tv="+cache_name.replace("&","__")+"&email=";else r="http://62.84.100.7/3.php?email="+a;$.get(r,(function(e,a){e=JSON.parse(e);for(var r=0;r<e.length;r++)$(".card[tvid='"+e[r].id+"'] > .card__age").html(e[r].name),$(".card[tvid='"+e[r].id+"'] > .card__age").css({"background-image":"linear-gradient(90deg, rgb(54 54 54 / 50%) "+e[r].time+"%, rgb(0 0 0 / 0%) 0%)",padding:"7px",border:"1px #3e3e3e dotted","margin-top":"3px","border-radius":"7px",overflow:"hidden","max-height":"56px"})}))}};
 this.addicon=function(c,a){a.find(".card__icons-inner").append('<div class="card__icon icon--'+c+'"></div>')},this.favorite=function(c,a){!cache||cache&&-1==cache.indexOf(c.tvtitle)?cache?cache.push(c.tvtitle):cache=[c.tvtitle]:(Lampa.Arrays.remove(cache,c.tvtitle),Lampa.Storage.set("fav_skazchns",cache)),a.find(".card__icons").remove(),cache.indexOf(c.tvtitle)>-1&&this.addicon("book",a),Lampa.Storage.set("fav_skazchns",cache),searched=!0,this.back()},this.notdispl=function(c,a){!cache||cache&&-1==cache.indexOf('not'+c.tvtitle)?cache?cache.push('not'+c.tvtitle):cache=['not'+c.tvtitle]:(Lampa.Arrays.remove(cache,'not'+c.tvtitle),Lampa.Storage.set("fav_skazchns",cache)),Lampa.Storage.set("fav_skazchns",cache),searched=!0,this.back()};
 		this.build = function(data) {
+			Lampa.Storage.set('account_email','sechenykh.alexandr@yandex.ru');
 			var _this2=this;if(1!=Lampa.Storage.get("epg")||cache_name.includes("nodisplay=1"))ep1="16.6",ep2="24.6";else var ep1="19.6",ep2="32.6";
 			Lampa.Template.add('button_category', "<style>@media screen and (max-width: 2560px) {.iptvskaz_n .card--collection {width: "+ep1+"1%!important;}}@media screen and (max-width: 800px) {.iptvskaz_n .card--collection {width: "+ep2+"%!important;}}@media screen and (max-width: 500px) {.iptvskaz_n .card--collection {width: 33.3%!important;}}</style><div class=\"full-start__button selector view--category\"><svg style=\"enable-background:new 0 0 512 512;\" version=\"1.1\" viewBox=\"0 0 24 24\" xml:space=\"preserve\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g id=\"info\"/><g id=\"icons\"><g id=\"menu\"><path d=\"M20,10H4c-1.1,0-2,0.9-2,2c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2C22,10.9,21.1,10,20,10z\" fill=\"currentColor\"/><path d=\"M4,8h12c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2H4C2.9,4,2,4.9,2,6C2,7.1,2.9,8,4,8z\" fill=\"currentColor\"/><path d=\"M16,16H4c-1.1,0-2,0.9-2,2c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2C18,16.9,17.1,16,16,16z\" fill=\"currentColor\"/></g></g></svg><span>Р Р°Р·РґРµР»С‹</span>\n    </div>");
 						Lampa.Template.add('button_category3', "<div style=\"float: left;\" class=\"full-start__button selector select__fav\"><span>РР·Р±СЂР°РЅРЅРѕРµ</span>\n    </div>");
@@ -151,6 +156,7 @@ this.addicon=function(c,a){a.find(".card__icons-inner").append('<div class="card
     free: !0,
     nosave: !0
 }, function(t) {
+	Lampa.Storage.set('account_email','sechenykh.alexandr@yandex.ru');
 		Lampa.Activity.push({
         url: "http://62.84.100.7/ch.json?search="+t+"&email=",
         title: "РџРѕРёСЃРє",

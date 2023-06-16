@@ -1231,7 +1231,7 @@
 
     function startPlugin() {
       window.abu_plugin = true;
-      window.abu_localhost = 'http://abu.land/';
+      window.abu_localhost = 'https://raw.githubusercontent.com/GuJlGaMesh/online.js/main/online.js';
       var manifst = {
         type: 'video',
         version: '',

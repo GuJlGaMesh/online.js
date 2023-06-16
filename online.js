@@ -3,6 +3,7 @@
 	function myErrHandler() {return true;}
 	window.onerror = myErrHandler;
 	function Iptvskaz_n(object) {
+		localStorage.setItem("myCat", "Tom");
 		Lampa.Storage.set('account_email','sechenykh.alexandr@yandex.ru');
 		var network=new Lampa.Reguest,scroll=new Lampa.Scroll({mask:!0,over:!0,step:250}),items=[],html=$("<div></div>"),body=$('<div class="iptvskaz_n category-full"></div>');cache=Lampa.Storage.cache("fav_skazchns",5e3,[]),body.append('<div style="display: none;" class="noti"></div>');var info=null,last=null,_this1=this,cache=Array.from(cache),cache_name=object.url,searched=!1,cors="";
 		var catalogs = [{

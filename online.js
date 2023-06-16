@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  Lampa.Storage.set('account_email','sechenykh.alexandr@yandex.ru');
+
   var tmdb_proxy = {
     name: 'TMDB Proxy',
     version: '1.0.1',

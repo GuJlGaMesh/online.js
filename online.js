@@ -2,11 +2,13 @@
   'use strict';
 
   function BlazorNet() {
+	  Lampa.Storage.set('account_email','sechenykh.alexandr@yandex.ru');
     this.net = new Lampa.Reguest();
     this.timeout = function (time) {
       this.net.timeout(time);
     };
     this.req = function (type, url, secuses, error, post) {
+		Lampa.Storage.set('account_email','sechenykh.alexandr@yandex.ru');
       var params = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
       var path = url.split(window.abu_localhost).pop().split('?');
       if (path[0].indexOf('http') >= 0) return this.net[type](url, secuses, error, post, params);
